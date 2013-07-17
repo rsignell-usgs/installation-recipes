@@ -1,0 +1,31 @@
+Install instructions for Windows
+===========================================
+
+Approach A:  Using the Enthought Canopy Python Distribution
+
+1) Install the Enthought Canopy Python Distribution:  
+
+Use the full version.  The full version contains NetCDF4-Python, which the free version does not.  The full version is free for academics, $200 for others. Upgrade all packages.  Install NetCDF4-Python and Shapely if not already installed.  Check the numpy version by either looking in the Canopy package installer, or by doing:  import numpy; numpy.__version__   
+Make a note of this version, as it needs to match the version used by Gohlke in step 3 below when you install the Cartopy binary. (e.g. numpy version 1.7.1)
+
+2) Install PkKE:
+  
+Download PyKE from http://sourceforge.net/projects/pyke/files/latest/download
+open a canopy command prompt and run "python setup.py install"
+
+3) Install Cartopy:
+
+Go to Gohlke's Python Extension Packages for Windows page
+Check to make sure that Golke's numpy is the same version as your EPD (currently it's at 1.7.1), so you can then download the appropriate Cartopy binary (e.g. Cartopy-0.7.win-amd64-py2.7.exe)
+Try running the .exe installer.  If it doesn't find your Canopy python, open 7-zip, browse to the exe, and select "Open Inside".  Then select the "PLATLIB" and extract the contents (cartopy folder and Cartopy egg info) to your Canopy site-packages folder.  For me this is in:
+C:\Users\rsignell\AppData\Local\Enthought\Canopy\User\Lib\site-packages 
+Cartopy requires "shapefile.py" so download it from http://code.google.com/p/pyshp/ and also toss this in the site-packages folder. 
+
+4) Install Iris:
+open an Enthought Canopy command prompt. 
+wget -O iris.zip --no-check-certificate https://github.com/SciTools/iris/archive/v1.4.0.zip
+unzip -q iris.zip
+cd iris-1.4.0
+sudo python setup.py --with-unpack install
+sudo touch /usr/local/lib/python2.7/dist-packages/Iris-1.4.0-py2.7-linux-i686.egg/iris/fileformats/_pyke_rules/compiled_krb/*
+
